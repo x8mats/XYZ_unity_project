@@ -6,25 +6,28 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    private float _direction;
-
     [SerializeField] private float _speed;
 
-    public void SetDirection(float direction)
+    private float _horizontalDirection;
+    private float _verticalDirection;
+
+    public void SetHorizontalDirection(float direction)
     {
-        _direction = direction;
+        _horizontalDirection = direction;
+    }
+
+    public void SetVerticalDirection(float direction)
+    {
+        _verticalDirection = direction;
     }
 
     private void Update()
     {
-        if (_direction != 0)
-        {
-            var delta = _direction * _speed * Time.deltaTime;
-            var newYPosition = transform.position.y + delta;
-            var newXPosition = transform.position.x + delta;
-            transform.position = new Vector3(newXPosition, newYPosition, transform.position.z);
+        Vector3 direction = new Vector3(_horizontalDirection, _verticalDirection, 0f);
 
+        direction = direction.normalized;
 
-        }
+        transform.position += direction * _speed * Time.deltaTime;
+
     }
 }
