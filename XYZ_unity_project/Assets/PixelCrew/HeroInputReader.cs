@@ -33,15 +33,9 @@ public class HeroInputReader : MonoBehaviour
     //    }
     //}
 
-    public void OnHorizontalMovement(InputAction.CallbackContext context)
+    public void movement(InputAction.CallbackContext context)
     {
-        var direction = context.ReadValue<float>();
-        _hero.SetHorizontalDirection(direction);
-    }
-
-    public void OnVerticalMovement(InputAction.CallbackContext context)
-    {
-        var direction = context.ReadValue<float>();
-        _hero.SetVerticalDirection(direction);
+        var direction = context.ReadValue<Vector2>();
+        _hero.SetDirection(direction);
     }
 }
